@@ -1,0 +1,49 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "args": [],
+    "showOutput": "always",
+    "tasks": [
+        {
+            "suppressTaskName": true,
+            "taskName": "build (debug)",
+            "args": [
+                "build",
+                "AutogiroLib.BgMax/src/AutogiroLib.BgMax"
+            ],
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$msCompile",
+            "isBuildCommand": true
+        },
+        {
+            "suppressTaskName": true,
+            "taskName": "build tests (debug)",
+            "args": [
+                "build",
+                "AutogiroLib.BgMax/src/AutogiroLib.BgMax.tests"
+            ],
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "§Unit Tests",
+            "command": "dotnet",
+            "args": [
+                "test",
+                ""
+            ],
+            "options": {
+                "cwd": "${workspaceRoot}/AutogiroLib.BgMax/src/AutogiroLib.BgMax.tests"
+            },
+            "isTestCommand": true,
+            "showOutput": "always",
+            "echoCommand": true,
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
