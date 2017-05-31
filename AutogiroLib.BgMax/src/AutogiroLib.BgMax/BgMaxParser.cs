@@ -18,11 +18,28 @@ namespace AutogiroLib.BgMax
             {
                 throw new ArgumentNullException(nameof(lines));
             }
+
+            this.lines = lines;
         }
 
         public BgMaxRecord ParseBgMaxContents()
         {
-            return new BgMaxRecord();
+            var avsnitt = new List<BgMaxAvsnitt>();
+            var betallningar = new List<Betalningspost>();
+            foreach (var line in lines)
+            {
+                if (line.StartsWith("15"))
+                {
+                    avsnitt.Add(new BgMaxAvsnitt(betallningar.ToArray()));
+                }
+
+                if (line.StartsWith("20"))
+                {
+                    betallningar.Add(new Betalningspost());
+                }
+            }
+
+            return new BgMaxRecord(avsnitt.ToArray());
         }
     }
 }
